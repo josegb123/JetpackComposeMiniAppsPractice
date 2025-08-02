@@ -70,6 +70,12 @@ fun PantallaPrincipal(navController: NavController) {
             Text("Ir a saludoApp")
         }
 
+        Spacer(Modifier.height(16.dp))
+
+        Button(onClick = { navController.navigate("tareas_screen") }) {
+            Text("Ir a TodoListApp")
+        }
+
     }
 }
 
