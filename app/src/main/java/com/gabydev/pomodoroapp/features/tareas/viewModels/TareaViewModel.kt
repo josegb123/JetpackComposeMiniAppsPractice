@@ -46,4 +46,15 @@ class TareasViewModel : ViewModel() {
             }
         }
     }
+
+    fun alternarExpansion(tarea: Tarea) {
+        listaTareas = listaTareas.map {
+            if (it.id == tarea.id) {
+                // Se crea una nueva tarea con el estado de expansión invertido
+                it.copy(isExpandida = !it.isExpandida)
+            } else {
+                it
+            }
+        }
+    }
 }

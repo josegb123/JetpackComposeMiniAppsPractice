@@ -20,16 +20,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 @Composable
-fun PantallaPrincipal(navController: NavController) {
+fun PantallaPrincipal(
+    onPomodoroApp: () -> Unit,
+    onSaludoApp: (encodedText: String) -> Unit,
+    onTodoApp: () -> Unit) {
     val brush = remember {
         Brush.linearGradient(
             colors = listOf(Color.Red, Color.Yellow, Color.Green, Color.Blue, Color.Magenta)
@@ -40,7 +41,10 @@ fun PantallaPrincipal(navController: NavController) {
 
     val encodedText = URLEncoder.encode(stateText, StandardCharsets.UTF_8.toString())
 
-    Column(modifier = Modifier.padding(16.dp).fillMaxSize(),
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -51,7 +55,7 @@ fun PantallaPrincipal(navController: NavController) {
 
         Spacer(Modifier.height(16.dp))
 
-        Button(onClick = { navController.navigate("pomodoro_screen") }) {
+        Button(onClick = onPomodoroApp) {
             Text("Ir a Pomodoro")
         }
 
@@ -66,13 +70,13 @@ fun PantallaPrincipal(navController: NavController) {
 
         Spacer(Modifier.height(16.dp))
 
-        Button(onClick = { navController.navigate("pantalla_saludo/${encodedText}") }) {
+        Button(onClick = { onSaludoApp(encodedText) }) {
             Text("Ir a saludoApp")
         }
 
         Spacer(Modifier.height(16.dp))
 
-        Button(onClick = { navController.navigate("tareas_screen") }) {
+        Button(onClick = onTodoApp) {
             Text("Ir a TodoListApp")
         }
 
@@ -81,7 +85,10 @@ fun PantallaPrincipal(navController: NavController) {
 
 @Preview(showSystemUi = true)
 @Composable
-fun PantallaPrincipalPreview(){
-    PantallaPrincipal(navController = NavController(
-        LocalContext.current))
+fun PantallaPrincipalPreview() {
+    PantallaPrincipal(
+        onPomodoroApp = { /* No hace nada */ },
+        onSaludoApp = { /* No hace nada */ },
+        onTodoApp = { /* No hace nada */ }
+    )
 }

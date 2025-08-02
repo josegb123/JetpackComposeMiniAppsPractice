@@ -10,17 +10,17 @@ import com.gabydev.pomodoroapp.features.tareas.TareasScreen
 
 @Composable
 fun AppNavigation() {
-    // 1. Crear el NavController
-    // Este controlador vive durante todo el ciclo de vida de la Activity
     val navController = rememberNavController()
 
-    // 2. Crear el NavHost
-    // Define el punto de inicio ('startDestination') y las rutas
     NavHost(navController = navController, startDestination = "pantalla_principal") {
 
-        // 3. Definir las rutas (destinations)
         composable("pantalla_principal") {
-            PantallaPrincipal(navController = navController)
+            // Las rutas deben ser nombradas igual que los composable de abajo
+            PantallaPrincipal(
+                onPomodoroApp = { navController.navigate("pomodoro_screen") },
+                onSaludoApp = { encodedText -> navController.navigate("pantalla_saludo/$encodedText") },
+                onTodoApp = { navController.navigate("tareas_screen") }
+            )
         }
 
         composable("pomodoro_screen") {
