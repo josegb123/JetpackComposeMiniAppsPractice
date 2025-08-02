@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.gabydev.pomodoroapp.screens.PantallaPrincipal
-import com.gabydev.pomodoroapp.screens.PantallaSaludo
-import com.gabydev.pomodoroapp.screens.PomodoroScreen
+import com.gabydev.pomodoroapp.ui.navigation.PantallaPrincipal
+import com.gabydev.pomodoroapp.features.saludo.PantallaSaludo
+import com.gabydev.pomodoroapp.features.pomodoro.PomodoroScreen
 
 
 class MainActivity : ComponentActivity() {
